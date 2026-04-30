@@ -35,10 +35,16 @@ function brain(text){
     return "Bunu anlayamadım Özgür";
 }
 
-// 🚀 OTOMATİK BAŞLAT
-window.onload = function autoStart(){
+window.onload = function(){
 
-    let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    let SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if(!SpeechRec){
+        document.body.innerHTML = "Tarayıcı sesli komutu desteklemiyor (Chrome kullan)";
+        return;
+    }
+
+    let r = new SpeechRec();
     r.lang = "tr-TR";
 
     speak("Sistem aktif Özgür. Ben Ahmet");
@@ -46,19 +52,19 @@ window.onload = function autoStart(){
     r.start();
 
     r.onresult = function(e){
-
         let text = e.results[0][0].transcript;
-
         let res = brain(text);
-
         speak(res);
     };
 
-    // 🔁 SÜREKLİ DİNLEME
-    r.onend = function(){
-        r.start(); // tekrar başlatır
+    r.onerror = function(){
+        r.start();
     };
 
-}
+    r.onend = function(){
+        r.start();
+    };
+
+};
 
 </script>
