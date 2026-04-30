@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jarvis Ahmet</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:#00ff99;
+    font-family:monospace;
+    overflow:hidden;
+}
+
+.center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+}
+
+.circle{
+    width:200px;
+    height:200px;
+    border:2px solid #00ff99;
+    border-radius:50%;
+    margin:auto;
+    animation:spin 4s linear infinite;
+    box-shadow:0 0 20px #00ff99;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+#log{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="center">
+    <div class="circle"></div>
+    <h2>JARVIS AHMET</h2>
+    <p>Özgür sistemi aktif</p>
+    <button onclick="start()">DİNLE</button>
+</div>
+
+<div id="log"></div>
+
+<script>
+
+// 🔊 konuşma
+function speak(text){
+    let s = new SpeechSynthesisUtterance(text);
+    s.lang = "tr-TR";
+    speechSynthesis.speak(s);
+}
+
+// 🧠 beyin
+function brain(text){
+
+    text = text.toLowerCase();
+
+    if(text.includes("merhaba"))
+        return "Merhaba Özgür, ben Ahmet";
+
+    if(text.includes("ben kimim"))
+        return "Sen Özgür, sistem sahibisin";
+
+    if(text.includes("saat"))
+        return "Saat " + new Date().toLocaleTimeString();
+
+    if(text.includes("tarih"))
+        return "Bugün " + new Date().toLocaleDateString("tr-TR");
+
+    if(text.includes("youtube")){
+        window.open("https://youtube.com");
+        return "YouTube açılıyor";
+    }
+
+    if(text.includes("google")){
+        window.open("https://google.com");
+        return "Google açılıyor";
+    }
+
+    if(text.includes("şaka"))
+        return "Robotlar gülmez ama ben deniyorum";
+
+    return "Bunu anlayamadım Özgür";
+}
+
+// 🎤 dinleme
+function start(){
+
+    let r = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    r.lang = "tr-TR";
+
+    speak("Sistem aktif Özgür. Ben Ahmet");
+
+    r.start();
+
+    r.onresult = function(e){
+
+        let text = e.results[0][0].transcript;
+
+        document.getElementById("log").innerHTML += "<div>Sen: "+text+"</div>";
+
+        let res = brain(text);
+
+        document.getElementById("log").innerHTML += "<div>Ahmet: "+res+"</div>";
+
+        speak(res);
+    };
+}
+
+</script>
+
+</body>
+</html>
