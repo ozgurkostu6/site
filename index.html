@@ -30,17 +30,14 @@ h1{
 <body>
 
 <h1>🟢 JARVIS AHMET AKTİF</h1>
-
 <div id="log"></div>
 
 <script>
 
-// 📜 LOG
 function log(t){
     document.getElementById("log").innerHTML += "<div>"+t+"</div>";
 }
 
-// 🔊 SES
 function speak(text){
     speechSynthesis.cancel();
 
@@ -56,12 +53,11 @@ function speak(text){
     log("Ahmet: " + text);
 }
 
-// 🧠 BEYİN
 function brain(text){
 
     text = text.toLowerCase();
 
-    // 👤 HAFIZA (GİZLİ)
+    // 👤 HAFIZA
     if(text.startsWith("adım")){
         let name = text.replace("adım", "").trim();
         localStorage.setItem("isim", name);
@@ -73,7 +69,7 @@ function brain(text){
         return "Sen " + name;
     }
 
-    // 🧠 AKILLI (GİZLİ)
+    // 🧠 AKILLI
     if(text.includes("sıkıldım"))
         return "Film izleyebilir veya müzik dinleyebilirsin";
 
@@ -88,6 +84,10 @@ function brain(text){
 
     if(text.includes("beni güldür"))
         return "Robotlar güler mi bilmiyorum ama deniyorum";
+
+    // 🟢 EYVALLAH
+    if(text.includes("eyvallah"))
+        return "Rica ederim Özgür";
 
     // 🌐 ARAMA
     if(text.startsWith("ara")){
@@ -146,7 +146,6 @@ function brain(text){
     return "Anlayamadım";
 }
 
-// 🎤 SES SİSTEMİ
 function start(){
 
     let SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -177,7 +176,6 @@ function start(){
     speak("Sistem aktif. Ben Ahmet");
 }
 
-// 🚀 BAŞLAT
 window.onload = function(){
 
     speechSynthesis.onvoiceschanged = () => {
