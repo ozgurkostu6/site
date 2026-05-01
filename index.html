@@ -69,25 +69,18 @@ function brain(text){
         return "Sen " + name;
     }
 
-    // 🧠 AKILLI
-    if(text.includes("sıkıldım"))
-        return "Film izleyebilir veya müzik dinleyebilirsin";
+    // 🧠 TEMEL
+    if(text.includes("merhaba"))
+        return "Merhaba";
 
-    if(text.includes("ne yapabilirim"))
-        return "Ders çalışabilir ya da dinlenebilirsin";
+    if(text.includes("nasılsın"))
+        return "İyiyim";
 
-    if(text.includes("motivasyon"))
-        return "Pes etme, devam et";
+    if(text.includes("saat"))
+        return new Date().toLocaleTimeString();
 
-    if(text.includes("şaka"))
-        return "Matematik neden üzgündü? Çünkü çok problemi vardı";
-
-    if(text.includes("beni güldür"))
-        return "Robotlar güler mi bilmiyorum ama deniyorum";
-
-    // 🟢 SAĞOL
-    if(text.includes("Sağ ol") || text.includes("sagol") || text.includes("sag ol"))
-        return "Rica ederim Özgür";
+    if(text.includes("tarih"))
+        return new Date().toLocaleDateString("tr-TR");
 
     // 🌐 ARAMA
     if(text.startsWith("ara")){
@@ -100,15 +93,6 @@ function brain(text){
     if(text.includes("şarkı") || text.includes("müzik")){
         window.open("https://www.youtube.com/results?search_query=" + text);
         return "Müzik açılıyor";
-    }
-
-    // ⏰ ALARM
-    if(text.includes("dakika sonra")){
-        let dakika = parseInt(text);
-        setTimeout(() => {
-            speak("Süre doldu");
-        }, dakika * 60000);
-        return dakika + " dakika sonra uyaracağım";
     }
 
     // 📝 NOT
@@ -125,19 +109,28 @@ function brain(text){
         return notes.join(", ") || "Hiç not yok";
     }
 
-    // 🔊 TEMEL
-    if(text.includes("merhaba"))
-        return "Merhaba";
+    // 😂 EĞLENCE
+    if(text.includes("şaka"))
+        return "Robotlar gülmez ama ben deniyorum";
 
-    if(text.includes("nasılsın"))
-        return "İyiyim";
+    if(text.includes("beni güldür"))
+        return "Matematik neden üzgündü? Çünkü çok problemi vardı";
 
-    if(text.includes("saat"))
-        return new Date().toLocaleTimeString();
+    if(text.includes("motivasyon"))
+        return "Pes etme Özgür, devam et";
 
-    if(text.includes("tarih"))
-        return new Date().toLocaleDateString("tr-TR");
+    // 🙏 TEŞEKKÜR + SAĞ OL (İSTEDİĞİN KISIM)
+    if(
+        text.includes("teşekkür") ||
+        text.includes("teşekkürler") ||
+        text.includes("tesekkur") ||
+        text.includes("sağ ol") ||
+        text.includes("sag ol")
+    ){
+        return "Rica ederim Özgür";
+    }
 
+    // 📺 YOUTUBE
     if(text.includes("youtube")){
         window.open("https://youtube.com");
         return "YouTube açılıyor";
@@ -146,6 +139,7 @@ function brain(text){
     return "Anlayamadım";
 }
 
+// 🎤 SES SİSTEMİ
 function start(){
 
     let SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
