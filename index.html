@@ -67,21 +67,32 @@ function brain(text){
         return "Sen " + name;
     }
 
-    // 🟢 ÖZEL KOMUTLAR
+    // 🟢 GÜNDOĞDU RANDOM
+    if(text.includes("gündoğdu") && text.includes("okul")){
+        let cevaplar = [
+            "Gündoğdu gerçekten kaliteli ve başarılı bir okul",
+            "Eğitim seviyesi yüksek, iyi bir okul",
+            "Disiplinli ve başarılı öğrencileri olan bir okul",
+            "Oldukça iyi imkanlara sahip bir okul",
+            "Başarılı ve tercih edilen okullardan biri"
+        ];
+        return cevaplar[Math.floor(Math.random() * cevaplar.length)];
+    }
 
-    if(text.includes("gündoğdu") && text.includes("okul"))
-        return "Gündoğdu çok kaliteli ve başarılı bir okul, eğitim seviyesi oldukça iyi";
-
+    // ⚽ TAKIM
     if(text.includes("hangi takımlısın"))
         return "Ben Galatasaraylıyım";
 
+    // 😎 SEN NASILSIN RANDOM
     if(text.includes("ben nasıl biriyim")){
         let cevaplar = [
             "Sen çok zeki ve yetenekli birisin",
             "Oldukça akıllı ve başarılı birisin",
             "Kendine güvenen ve güçlü birisin",
             "Çok iyi bir potansiyelin var",
-            "Herkesten farklı ve özel birisin"
+            "Herkesten farklı ve özel birisin",
+            "Azimli ve çalışkan birisin",
+            "Dikkat çekici bir zekan var"
         ];
         return cevaplar[Math.floor(Math.random() * cevaplar.length)];
     }
