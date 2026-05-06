@@ -12,11 +12,9 @@ body{
     font-family:monospace;
     padding:20px;
 }
-
 h1{
     text-align:center;
 }
-
 #log{
     border:1px solid #00ff99;
     padding:10px;
@@ -69,18 +67,35 @@ function brain(text){
         return "Sen " + name;
     }
 
-    // 🧠 TEMEL
-    if(text.includes("merhaba"))
-        return "Merhaba";
+    // 🟢 ÖZEL KOMUTLAR
 
-    if(text.includes("nasılsın"))
-        return "İyiyim";
+    if(text.includes("gündoğdu") && text.includes("okul"))
+        return "Gündoğdu çok kaliteli ve başarılı bir okul, eğitim seviyesi oldukça iyi";
 
-    if(text.includes("saat"))
-        return new Date().toLocaleTimeString();
+    if(text.includes("hangi takımlısın"))
+        return "Ben Galatasaraylıyım";
 
-    if(text.includes("tarih"))
-        return new Date().toLocaleDateString("tr-TR");
+    if(text.includes("ben nasıl biriyim")){
+        let cevaplar = [
+            "Sen çok zeki ve yetenekli birisin",
+            "Oldukça akıllı ve başarılı birisin",
+            "Kendine güvenen ve güçlü birisin",
+            "Çok iyi bir potansiyelin var",
+            "Herkesten farklı ve özel birisin"
+        ];
+        return cevaplar[Math.floor(Math.random() * cevaplar.length)];
+    }
+
+    // 🙏 TEŞEKKÜR + SAĞ OL
+    if(
+        text.includes("teşekkür") ||
+        text.includes("teşekkürler") ||
+        text.includes("tesekkur") ||
+        text.includes("sağ ol") ||
+        text.includes("sag ol")
+    ){
+        return "Rica ederim Özgür";
+    }
 
     // 🌐 ARAMA
     if(text.startsWith("ara")){
@@ -119,18 +134,19 @@ function brain(text){
     if(text.includes("motivasyon"))
         return "Pes etme Özgür, devam et";
 
-    // 🙏 TEŞEKKÜR + SAĞ OL (İSTEDİĞİN KISIM)
-    if(
-        text.includes("teşekkür") ||
-        text.includes("teşekkürler") ||
-        text.includes("tesekkur") ||
-        text.includes("sağ ol") ||
-        text.includes("sag ol")
-    ){
-        return "Rica ederim Özgür";
-    }
+    // 🔊 TEMEL
+    if(text.includes("merhaba"))
+        return "Merhaba";
 
-    // 📺 YOUTUBE
+    if(text.includes("nasılsın"))
+        return "İyiyim";
+
+    if(text.includes("saat"))
+        return new Date().toLocaleTimeString();
+
+    if(text.includes("tarih"))
+        return new Date().toLocaleDateString("tr-TR");
+
     if(text.includes("youtube")){
         window.open("https://youtube.com");
         return "YouTube açılıyor";
@@ -139,7 +155,6 @@ function brain(text){
     return "Anlayamadım";
 }
 
-// 🎤 SES SİSTEMİ
 function start(){
 
     let SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
