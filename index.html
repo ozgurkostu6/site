@@ -83,12 +83,20 @@ function brain(text){
     if(text.includes("hangi takımlısın"))
         return "Ben Galatasaraylıyım";
 
-    // ⚽ ŞAMPİYON
-    if(text.includes("bu sene şampiyon kim"))
+    // ⚽ ŞAMPİYON (FIX)
+    if(
+        text.includes("şampiyon") &&
+        (text.includes("kim") || text.includes("kim olur"))
+    ){
         return "O sene bu sene Cimbomum";
+    }
 
-    // 😎 SEN NASILSIN RANDOM
-    if(text.includes("ben nasıl biriyim")){
+    // 😎 BEN NASIL BİRİYİM (FIX)
+    if(
+        text.includes("ben") &&
+        text.includes("nasıl") &&
+        text.includes("biriyim")
+    ){
         let cevaplar = [
             "Sen çok zeki ve yetenekli birisin",
             "Oldukça akıllı ve başarılı birisin",
