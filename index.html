@@ -83,15 +83,12 @@ function brain(text){
     if(text.includes("hangi takımlısın"))
         return "Ben Galatasaraylıyım";
 
-    // ⚽ ŞAMPİYON (FIX)
-    if(
-        text.includes("şampiyon") &&
-        (text.includes("kim") || text.includes("kim olur"))
-    ){
+    // ⚽ ŞAMPİYON (KESİN FIX)
+    if(text.includes("şampiyon") && text.includes("kim")){
         return "O sene bu sene Cimbomum";
     }
 
-    // 😎 BEN NASIL BİRİYİM (FIX)
+    // 😎 BEN NASIL BİRİYİM
     if(
         text.includes("ben") &&
         text.includes("nasıl") &&
